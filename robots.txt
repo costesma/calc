@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://calculateurs-pratiques.fr/sitemap.xml
+
