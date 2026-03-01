@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8741175086261776"
+     crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Convertissez votre salaire brut en net. Calculateur gratuit avec taux moyens 2026 (cadre, non-cadre, fonction publique). Prélèvement à la source inclus.">
+    <link rel="canonical" href="https://calculateurs-pratiques.fr/particuliers/brut-net.html">
+    <title>Salaire brut en net 2026 : Simulateur avec prélèvement à la source</title>
+    
+    <link rel="stylesheet" href="../assets/css/style.css">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Quelle est la différence entre salaire brut et net ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Le salaire brut est le montant avant déduction des cotisations sociales (retraite, santé, chômage, etc.). Le salaire net est ce que vous recevez réellement sur votre compte bancaire après ces déductions. En moyenne, le net représente environ 75-78% du brut."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Comment calculer son salaire net à partir du brut ?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Pour un salarié non-cadre, multipliez le brut par environ 0.77 (soit -23%). Pour un cadre, multipliez par environ 0.75 (soit -25%). Pour un fonctionnaire, multipliez par environ 0.85 (soit -15%). Puis déduisez le prélèvement à la source selon votre taux d'imposition."
+          }
+        }
+      ]
+    }
+    </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Accueil",
+          "item": "https://calculateurs-pratiques.fr/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Brut-Net"
+        }
+      ]
+    }
+    </script>
+</head>
+<body>
+
+    <header class="hero-banner">
+        <div class="top-nav-bar">
+            <a href="../index.html" class="logo">📊 Calculateurs Pratiques</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Accueil</a></li>
+                <li><a href="index.html" style="color: white; font-weight: 600;">Particuliers</a></li>
+                <li><a href="../entreprise/index.html">Entreprise</a></li>
+                <li><a href="../outils-temps/index.html">Outils-Temps</a></li>
+            </ul>
+        </div>
+        <div class="hero-content">
+            <div class="breadcrumb">
+                <a href="../index.html">Accueil</a> › <a href="index.html">Particuliers</a> › Brut-Net
+            </div>
+            <p style="font-size: 0.85rem; color: #94A3B8; margin: 0.5rem 0 1rem 0;">Mis à jour le 16 février 2026</p>
+            <h1>Simulateur salaire brut ↔ net 2026</h1>
+            <p>Convertissez votre salaire instantanément. Inclut le prélèvement à la source et la gestion des 13ème et 14ème mois.</p>
+        </div>
+    </header>
+
+    <main class="main-layout">
+        
+        <aside class="sticky-sidebar">
+            
+            <form class="calculator-widget" onsubmit="event.preventDefault(); calculer();">
+                <div class="widget-header">
+                    <h3>Simulation rapide</h3>
+                </div>
+                
+                <div class="widget-body">
+                    
+                    <div class="input-group">
+                        <label for="montantMensuel">Salaire brut mensuel (€)</label>
+                        <input type="number" id="montantMensuel" placeholder="Ex: 3000" min="0" step="1" value="3000" oninput="syncMensuelVersAnnuel()">
+                        <span class="input-hint">Montant mensuel avant cotisations</span>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="montantAnnuel">Salaire brut annuel (€)</label>
+                        <input type="number" id="montantAnnuel" placeholder="Ex: 36000" min="0" step="1" value="36000" oninput="syncAnnuelVersMensuel()">
+                        <span class="input-hint">Souvent utilisé lors des recrutements</span>
+                    </div>
+
+                    <div class="input-group" style="margin-top: 2rem;">
+                        <label for="statut">Statut professionnel</label>
+                        <select id="statut">
+                            <option value="non-cadre">Employé non-cadre</option>
+                            <option value="cadre">Ingénieur & cadre</option>
+                            <option value="fonction-publique">Fonction publique</option>
+                        </select>
+                    </div>
+
+                    <div class="input-group">
+                        <label for="tauxImpot">Prélèvement à la source (%)</label>
+                        <select id="tauxImpot">
+                            <option value="0">Non imposable (0%)</option>
+                            <option value="0.5">0,5%</option>
+                            <option value="1.3">1,3%</option>
+                            <option value="2.1">2,1%</option>
+                            <option value="3.5">3,5%</option>
+                            <option value="5.3">5,3%</option>
+                            <option value="7.5" selected>7,5%</option>
+                            <option value="9.9">9,9%</option>
+                            <option value="11.9">11,9%</option>
+                            <option value="13.8">13,8%</option>
+                            <option value="15.8">15,8%</option>
+                            <option value="17.9">17,9%</option>
+                            <option value="20">20%</option>
+                        </select>
+                    </div>
+
+                    <label class="check-item" style="margin-bottom: 1.5rem;">
+                        <input type="checkbox" id="tauxPersonnaliseCheck" onchange="toggleTauxPersonnalise()">
+                        <span style="color: var(--royal-blue); font-weight: 600;">Saisir un taux personnalisé</span>
+                    </label>
+
+                    <div class="input-group" id="tauxPersonnaliseGroup" style="display: none; padding: 1rem; background: var(--bg-page); border-radius: 8px; border: 1px dashed var(--border-soft);">
+                        <label for="tauxPersonnalise">Votre taux exact (%)</label>
+                        <input type="number" id="tauxPersonnalise" placeholder="Ex: 7.8" min="0" max="50" step="0.1" style="background: white;">
+                    </div>
+
+                    <div class="input-group" style="margin-top: 1.5rem;">
+                        <label>Mois supplémentaires</label>
+                        <div class="checkbox-grid">
+                            <label class="check-item"><input type="checkbox" id="treizieme" value="1" onchange="updateAnnuelAvecPrimes()"> 13ème mois</label>
+                            <label class="check-item"><input type="checkbox" id="quatorzieme" value="1" onchange="updateAnnuelAvecPrimes()"> 14ème mois</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-calc">
+                        Calculer mon net
+                    </button>
+                </div>
+            </form>
+
+            <div class="ad-space-premium">
+                <span class="ad-label">Sponsorisé</span>
+                <div class="ad-placeholder">
+                    Encart AdSense 300x250
+                </div>
+            </div>
+
+        </aside>
+
+        <div class="reading-area-wrapper">
+            <article class="reading-area">
+                
+                <nav class="article-tabs">
+                    <button class="tab-btn tab-btn-result" id="btn-tab-resultats" onclick="switchArticleTab('resultats', this)">📊 Vos Résultats</button>
+                    <button class="tab-btn active" id="btn-tab-guide" onclick="switchArticleTab('guide', this)">Comprendre la paie</button>
+                    <button class="tab-btn" id="btn-tab-details" onclick="switchArticleTab('details', this)">Prélèvement & Primes</button>
+                </nav>
+
+                <div class="article-content">
+                    
+                    <div id="resultats" class="content-pane">
+                        <div style="text-align: center; margin-bottom: 3rem;">
+                            <h2 style="font-family: 'Inter', sans-serif; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-reading); margin-bottom: 0.5rem;">Net payé avant impôt (Mensuel)</h2>
+                            <div id="net-avant-impot-mensuel" style="font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--royal-blue); line-height: 1;">-</div>
+                            
+                            <div style="margin-top: 2rem; background: var(--bg-page); padding: 2rem; border-radius: 12px; border-left: 4px solid var(--orange-dark);">
+                                <h2 style="font-family: 'Inter', sans-serif; font-size: 1rem; text-transform: uppercase; letter-spacing: 1px; color: var(--text-reading); margin-bottom: 0.5rem;">Net payé APRÈS impôt (Virement réel)</h2>
+                                <div id="net-apres-impot-mensuel" style="font-family: 'Playfair Display', serif; font-size: 3.5rem; color: var(--orange-dark); line-height: 1; font-weight: 700;">-</div>
+                                <button type="button" onclick="copierResultat()" style="margin-top: 1.5rem; padding: 0.75rem 1.5rem; background: transparent; color: var(--orange-dark); border: 2px solid var(--orange-dark); border-radius: 8px; cursor: pointer; font-weight: 600; font-family: 'Inter', sans-serif; transition: all 0.2s;">
+                                    📋 Copier le salaire net
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="lux-table-wrapper" style="margin-bottom: 3rem;">
+                            <table class="lux-table">
+                                <thead>
+                                    <tr>
+                                        <th>Synthèse globale</th>
+                                        <th>Mensuel</th>
+                                        <th>Annuel</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><strong>Salaire brut</strong></td>
+                                        <td id="brut-mensuel" style="font-weight: 600;">-</td>
+                                        <td id="brut-annuel" style="font-weight: 600;">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td><strong>Net avant impôt</strong></td>
+                                        <td id="net-avant-impot-mensuel-tab">-</td>
+                                        <td id="net-avant-impot-annuel">-</td>
+                                    </tr>
+                                    <tr>
+                                        <td style="color: var(--orange-dark);"><strong>Net après impôt</strong></td>
+                                        <td id="net-apres-impot-mensuel-tab" style="color: var(--orange-dark); font-weight: 600;">-</td>
+                                        <td id="net-apres-impot-annuel" style="color: var(--orange-dark); font-weight: 600;">-</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <h3>Détail des prélèvements mensuels estimés</h3>
+                        <p style="font-size: 0.95rem; color: var(--text-reading);">Basé sur le taux moyen de cotisations : <strong id="taux-cotisations">-</strong></p>
+                        
+                        <div class="def-card" style="background: var(--bg-page); border-left-color: var(--royal-blue);">
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; border-bottom: 1px dashed var(--border-soft); padding-bottom: 0.5rem;">
+                                <span>Sécurité sociale (maladie)</span> <strong id="detail-secu">-</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; border-bottom: 1px dashed var(--border-soft); padding-bottom: 0.5rem;">
+                                <span>Retraite de base & complémentaire</span> <strong id="detail-retraite-total">-</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; border-bottom: 1px dashed var(--border-soft); padding-bottom: 0.5rem;">
+                                <span>Assurance chômage</span> <strong id="detail-chomage">-</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; border-bottom: 1px dashed var(--border-soft); padding-bottom: 0.5rem;">
+                                <span>CSG / CRDS</span> <strong id="detail-csg">-</strong>
+                            </div>
+                            <div style="display: flex; justify-content: space-between; margin-top: 1rem; color: var(--royal-blue); font-size: 1.1rem;">
+                                <strong>Total charges salariales</strong> <strong id="total-cotisations">-</strong>
+                            </div>
+                        </div>
+                        
+                        <div class="def-card" style="background: #F8EFEA; border-left-color: var(--orange-dark); display: flex; justify-content: space-between; align-items: center;">
+                            <span style="font-weight: 600; color: var(--text-dark);">Impôt sur le revenu (PAS)</span>
+                            <strong id="impot-revenu" style="font-size: 1.2rem; color: var(--orange-dark);">-</strong>
+                        </div>
+                    </div>
+
+                    <div id="guide" class="content-pane active">
+                        
+                        <div class="pull-quote">
+                            "La fiche de paie n'est pas qu'un bout de papier, c'est le reflet direct de votre participation à la solidarité nationale."
+                        </div>
+
+                        <h2>Comprendre la différence entre salaire brut et net</h2>
+                        <p>La différence entre le salaire brut et le salaire net est une source fréquente de confusion lors d'une négociation salariale. Le montant affiché sur votre contrat de travail est toujours le salaire brut, tandis que ce que vous recevez réellement sur votre compte bancaire est le salaire net après impôt.</p>
+
+                        <h3>Les 3 niveaux de lecture :</h3>
+                        <div class="def-card">
+                            <h3>1. Le salaire brut</h3>
+                            <p>C'est le montant total de votre rémunération avant toute déduction. C'est ce chiffre qui sert de base au calcul de toutes les cotisations sociales.</p>
+                        </div>
+                        <div class="def-card">
+                            <h3>2. Le net avant impôt</h3>
+                            <p>C'est votre salaire après déduction des cotisations sociales (retraite, chômage, santé), mais avant le prélèvement de l'impôt sur le revenu.</p>
+                        </div>
+                        <div class="def-card">
+                            <h3>3. Le net après impôt</h3>
+                            <p>C'est la somme finale, nette de toutes charges et impôts, qui atterrit réellement sur votre compte en banque chaque mois.</p>
+                        </div>
+
+                        <h3>Quel est le taux de conversion brut → net ?</h3>
+                        <p>Le taux de conversion varie selon votre statut et votre secteur d'activité, mais voici les moyennes constatées en 2026 :</p>
+                        <ul>
+                            <li><strong>Salarié non-cadre :</strong> environ 77% du brut (soit -23% de cotisations)</li>
+                            <li><strong>Salarié cadre :</strong> environ 75% du brut (soit -25% de cotisations)</li>
+                            <li><strong>Fonction publique :</strong> environ 85% du brut (soit -15% de cotisations)</li>
+                        </ul>
+
+                        <div class="example-box">
+                            <strong>Exemple pour 3 000 € brut (Non-cadre) :</strong><br><br>
+                            Salaire brut : 3 000 €<br>
+                            Cotisations sociales (env. 23%) : -690 €<br>
+                            = Net avant impôt : 2 310 €<br>
+                        </div>
+                    </div>
+
+                    <div id="details" class="content-pane">
+                        <h2>Le prélèvement à la source (PAS)</h2>
+                        <p>Depuis 2019, l'impôt sur le revenu est prélevé directement sur votre salaire chaque mois. Le taux est calculé par l'administration fiscale selon :</p>
+                        <ul>
+                            <li>Vos revenus de l'année précédente</li>
+                            <li>Votre situation familiale (célibataire, marié, enfants)</li>
+                            <li>Vos charges déductibles</li>
+                        </ul>
+                        <p>Ce taux figure sur votre avis d'imposition et est communiqué automatiquement à votre employeur. Vous pouvez le modifier en cours d'année sur <em>impots.gouv.fr</em> si votre situation change.</p>
+
+                        <h3>Le 13ème et 14ème mois</h3>
+                        <p>Certaines conventions collectives ou entreprises versent un 13ème mois (voire un 14ème mois) qui correspond à un mois de salaire supplémentaire.</p>
+                        
+                        <div class="pull-quote" style="font-size: 1.1rem; line-height: 1.5; font-style: normal;">
+                            <strong>⚠️ Attention :</strong> Ces mois supplémentaires sont soumis aux mêmes cotisations sociales ET au prélèvement à la source que le salaire mensuel classique. Ils ne sont donc pas "nets d'impôts".
+                        </div>
+
+                        <div class="example-box">
+                            <strong>Impact d'un 13ème mois :</strong><br><br>
+                            Salaire brut mensuel : 3 000 €<br>
+                            13ème mois brut : 3 000 €<br>
+                            Salaire brut annuel : (3 000 × 12) + 3 000 = <strong>39 000 €</strong><br><br>
+                            <em>Le taux d'imposition s'appliquera sur l'ensemble de ces revenus lors du versement de la prime.</em>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="ad-space-premium" style="margin: 2.5rem 0; padding: 8rem 2rem; background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%); border-radius: 12px; border: 1px dashed #E2E8F0; text-align: center;">
+                    <span style="color: #94A3B8; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 1px;">Sponsorisé</span>
+                </div>
+
+                <div class="internal-links">
+                    <h3>Explorez d'autres simulateurs</h3>
+                    <div class="links-grid">
+                        <a href="impots-revenu.html" class="link-card">
+                            <strong>Calculer l'IR</strong>
+                            <p>Estimez votre impôt sur le revenu détaillé</p>
+                        </a>
+                        <a href="../entreprise/salaire-dirigeant.html" class="link-card">
+                            <strong>Salaire dirigeant</strong>
+                            <p>TNS vs Assimilé pour les chefs d'entreprise</p>
+                        </a>
+                        <a href="../entreprise/comparateur-structures-juridiques.html" class="link-card">
+                            <strong>Structures juridiques</strong>
+                            <p>Comparez EURL, SASU, Micro et SARL</p>
+                        </a>
+                        <a href="frais-notaire.html" class="link-card">
+                            <strong>Frais de notaire</strong>
+                            <p>Calculez les frais d'acquisition immobilière</p>
+                        </a>
+                    </div>
+                </div>
+
+                <div style="margin-top: 3rem; padding: 1rem; background: #F8FAFC; border-radius: 8px; border-left: 3px solid #94A3B8; font-size: 0.85rem;">
+                    <p style="font-weight: 600; margin: 0 0 0.5rem 0; color: #475569;">Sources officielles :</p>
+                    <ul style="margin: 0; padding-left: 1.2rem; color: #64748B;">
+                        <li><a href="https://www.urssaf.fr" target="_blank" rel="noopener" style="color: #64748B; text-decoration: underline;">URSSAF</a></li>
+                        <li><a href="https://www.service-public.fr" target="_blank" rel="noopener" style="color: #64748B; text-decoration: underline;">Service-Public.fr</a></li>
+                    </ul>
+                </div>
+
+            </article>
+        </div>
+
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-container">
+            <div class="footer-brand">
+                <h4>📊 Calculateurs Pratiques</h4>
+                <p>Vos outils de calcul gratuits et fiables pour toutes vos décisions financières et quotidiennes en 2026.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Liens utiles</h4>
+                <ul>
+                    <li><a href="../pages/mentions-legales.html">Mentions légales</a></li>
+                    <li><a href="../pages/confidentialite.html">Politique de confidentialité</a></li>
+                    <li><a href="../pages/contact.html">Contact</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2026 Calculateurs Pratiques. Tous droits réservés.</p>
+            <p>Dernière mise à jour : 17/02/2026</p>
+        </div>
+    </footer>
+
+    <script>
+        /* GESTION DES ONGLETS */
+        function switchArticleTab(tabId, btnElement) {
+            document.querySelectorAll('.content-pane').forEach(pane => { pane.classList.remove('active'); });
+            document.querySelectorAll('.tab-btn').forEach(btn => { btn.classList.remove('active'); });
+            document.getElementById(tabId).classList.add('active');
+            btnElement.classList.add('active');
+        }
+
+        /* OUTILS DE FORMATAGE */
+        function formatEuro(montant) {
+            return new Intl.NumberFormat('fr-FR', { style: 'currency', currency: 'EUR', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(montant);
+        }
+
+        /* GESTION DU TAUX PERSONNALISÉ */
+        function toggleTauxPersonnalise() {
+            const checkbox = document.getElementById('tauxPersonnaliseCheck');
+            const tauxSelect = document.getElementById('tauxImpot');
+            const tauxPersonnaliseGroup = document.getElementById('tauxPersonnaliseGroup');
+            
+            if (checkbox.checked) {
+                tauxPersonnaliseGroup.style.display = 'block';
+                tauxSelect.disabled = true;
+                tauxSelect.style.opacity = '0.5';
+            } else {
+                tauxPersonnaliseGroup.style.display = 'none';
+                tauxSelect.disabled = false;
+                tauxSelect.style.opacity = '1';
+            }
+        }
+        
+        function getTauxImpot() {
+            const checkbox = document.getElementById('tauxPersonnaliseCheck');
+            if (checkbox.checked) {
+                const tauxPersonnalise = parseFloat(document.getElementById('tauxPersonnalise').value) || 0;
+                return tauxPersonnalise / 100;
+            } else {
+                const tauxSelect = document.getElementById('tauxImpot');
+                return parseFloat(tauxSelect.value) / 100;
+            }
+        }
+
+        /* SYNCHRONISATION MENSUEL / ANNUEL */
+        let enSync = false;
+        function syncMensuelVersAnnuel() {
+            if (enSync) return; enSync = true;
+            const mensuel = parseFloat(document.getElementById('montantMensuel').value) || 0;
+            let moisDeSalaire = 12;
+            if (document.getElementById('treizieme').checked) moisDeSalaire += 1;
+            if (document.getElementById('quatorzieme').checked) moisDeSalaire += 1;
+            document.getElementById('montantAnnuel').value = Math.round(mensuel * moisDeSalaire);
+            enSync = false;
+        }
+
+        function syncAnnuelVersMensuel() {
+            if (enSync) return; enSync = true;
+            const annuel = parseFloat(document.getElementById('montantAnnuel').value) || 0;
+            let moisDeSalaire = 12;
+            if (document.getElementById('treizieme').checked) moisDeSalaire += 1;
+            if (document.getElementById('quatorzieme').checked) moisDeSalaire += 1;
+            document.getElementById('montantMensuel').value = Math.round(annuel / moisDeSalaire);
+            enSync = false;
+        }
+
+        function updateAnnuelAvecPrimes() { syncMensuelVersAnnuel(); }
+
+        /* MOTEUR DE CALCUL */
+        function calculer() {
+            const montantMensuel = parseFloat(document.getElementById('montantMensuel').value);
+            const montantAnnuel = parseFloat(document.getElementById('montantAnnuel').value);
+            const statut = document.getElementById('statut').value;
+            const tauxImpot = getTauxImpot();
+
+            if (!montantMensuel || montantMensuel <= 0) { alert('Veuillez saisir un montant mensuel valide'); return; }
+
+            // Taux de cotisations moyens 2026
+            const tauxCotisations = { 'non-cadre': 0.23, 'cadre': 0.25, 'fonction-publique': 0.15 };
+            const fourchettes = { 'non-cadre': '22-25%', 'cadre': '24-27%', 'fonction-publique': '14-16%' };
+            const taux = tauxCotisations[statut];
+
+            // Calculs Mensuels
+            const salaireBrutMensuel = montantMensuel;
+            const totalCotisationsMensuel = salaireBrutMensuel * taux;
+            const salaireNetAvantImpotMensuel = salaireBrutMensuel - totalCotisationsMensuel;
+            
+            // Net imposable (facteur moyen d'arrondi de la CSG non déductible)
+            const netImposableMensuel = salaireNetAvantImpotMensuel * 1.024;
+            const impotMensuel = netImposableMensuel * tauxImpot;
+            const salaireNetApresImpotMensuel = salaireNetAvantImpotMensuel - impotMensuel;
+
+            // Calculs Annuels
+            const salaireBrutAnnuel = montantAnnuel;
+            const totalCotisationsAnnuel = salaireBrutAnnuel * taux;
+            const salaireNetAvantImpotAnnuel = salaireBrutAnnuel - totalCotisationsAnnuel;
+            const netImposableAnnuel = salaireNetAvantImpotAnnuel * 1.024;
+            const impotAnnuel = netImposableAnnuel * tauxImpot;
+            const salaireNetApresImpotAnnuel = salaireNetAvantImpotAnnuel - impotAnnuel;
+
+            // Affichage dans le DOM
+            document.getElementById('net-apres-impot-mensuel').textContent = formatEuro(salaireNetApresImpotMensuel);
+            document.getElementById('net-avant-impot-mensuel').textContent = formatEuro(salaireNetAvantImpotMensuel);
+            
+            // Tableau de synthèse
+            document.getElementById('brut-mensuel').textContent = formatEuro(salaireBrutMensuel);
+            document.getElementById('brut-annuel').textContent = formatEuro(salaireBrutAnnuel);
+            document.getElementById('net-avant-impot-mensuel-tab').textContent = formatEuro(salaireNetAvantImpotMensuel);
+            document.getElementById('net-avant-impot-annuel').textContent = formatEuro(salaireNetAvantImpotAnnuel);
+            document.getElementById('net-apres-impot-mensuel-tab').textContent = formatEuro(salaireNetApresImpotMensuel);
+            document.getElementById('net-apres-impot-annuel').textContent = formatEuro(salaireNetApresImpotAnnuel);
+            
+            // Détails cotisations
+            document.getElementById('taux-cotisations').textContent = (taux * 100).toFixed(1) + '% (moyenne observée)';
+            document.getElementById('total-cotisations').textContent = formatEuro(totalCotisationsMensuel);
+            document.getElementById('impot-revenu').textContent = formatEuro(impotMensuel);
+            
+            document.getElementById('detail-secu').textContent = formatEuro(salaireBrutMensuel * 0.13); 
+            document.getElementById('detail-retraite-total').textContent = formatEuro(salaireBrutMensuel * 0.105); // Base + Comp
+            document.getElementById('detail-chomage').textContent = formatEuro(salaireBrutMensuel * 0.024); 
+            document.getElementById('detail-csg').textContent = formatEuro(salaireBrutMensuel * 0.097); 
+
+            // Stocker pour copie
+            window.dernierResultat = formatEuro(salaireNetApresImpotMensuel);
+
+            // BASCULE MAGIQUE SUR L'ONGLET RÉSULTATS
+            const btnRes = document.getElementById('btn-tab-resultats');
+            btnRes.classList.add('show');
+            switchArticleTab('resultats', btnRes);
+            document.querySelector('.article-tabs').scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+
+        /* FONCTION COPIER */
+        function copierResultat() {
+            if (window.dernierResultat) {
+                if (navigator.clipboard && window.isSecureContext) {
+                    navigator.clipboard.writeText(window.dernierResultat).then(
+                        function() { alert('Salaire net copié : ' + window.dernierResultat); },
+                        function() { fallbackCopy(); }
+                    );
+                } else {
+                    fallbackCopy();
+                }
+            }
+            function fallbackCopy() {
+                const textarea = document.createElement('textarea');
+                textarea.value = window.dernierResultat;
+                textarea.style.position = 'fixed';
+                textarea.style.opacity = '0';
+                document.body.appendChild(textarea);
+                textarea.select();
+                try {
+                    document.execCommand('copy');
+                    alert('Salaire net copié : ' + window.dernierResultat);
+                } catch (err) {
+                    alert('Impossible de copier. Résultat : ' + window.dernierResultat);
+                }
+                document.body.removeChild(textarea);
+            }
+        }
+    </script>
+</body>
+</html>
